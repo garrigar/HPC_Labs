@@ -6,6 +6,7 @@ In this work, a comparison of the following matrix multiplication methods is don
 - Cython CUDA (cuBLAS)
 - Cython
 - Cython OpenMP
+CUDA implementation is based on the use of cuBLAS library.
 
 ## System and Software Specifications 
 * __OS__:  Ubuntu 20.04.3 LTS 
@@ -45,4 +46,10 @@ The whole launch sequence is shown in `main.ipynb`.
 ![image](https://user-images.githubusercontent.com/43893150/148308528-9543269c-d795-4713-b2ef-5fd441cf8a86.png)
 
 ## Conclusion
-GPU version is obviously the fastest of all versions. OpenMP tackles the problem pretty well up until N=256, but is slower afterwards.
+GPU version is obviously the fastest of all versions. OpenMP tackles the problem pretty well up until N = 128, but is slower afterwards.
+
+The acceleration of the GPU version in comparison to CPU is steadily growing with N growing.
+
+The GPU version starts to dominate over other implementations by N = 32.
+
+GPU time starts to rise by N = 256.
