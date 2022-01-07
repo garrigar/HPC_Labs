@@ -75,8 +75,8 @@ The whole launch sequence is shown in `main.ipynb`.
 ## Conclusion
 We can note that NumPy version is the slowest of all everywhere. A probable reason for this is that this is an implementation in Python, and the other two implementations are basically C-based.
 
-The acceleration of the GPU version in comparison to CPU is growing with N growing.
+The acceleration of the GPU version in comparison to CPU is steadily growing with N growing.
 
-The GPU version starts to dominate over other implementations by N = 2^13 ≈ 10^4.
+The GPU version starts to **dominate** over other implementations by N = 2^13 ≈ 10^4.
 
 GPU time starts to rise by N = 2^20 ≈ 10^6.
