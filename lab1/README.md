@@ -39,10 +39,10 @@ The whole launch sequence is shown in `main.ipynb`.
 | 10^7 | 5.55098   | 8.26024   | 0.0999808 |
 
 ### *Time graphs*
-todo
+![image](https://user-images.githubusercontent.com/43893150/148571494-5229a58b-74ae-499f-bd4e-9927d46642ca.png)
 
 ### *Acceleration graphs*
-todo
+![image](https://user-images.githubusercontent.com/43893150/148573483-76ebe634-ce7f-4c97-816b-82395f233652.png)
 
 ## Lenghts are powers of 2
 
@@ -67,13 +67,16 @@ todo
 | 2^25 | 18.411      | 28.326     | 0.303661  |
 
 ### *Time graphs*
-todo
+![image](https://user-images.githubusercontent.com/43893150/148573539-f59dbe92-d895-4e56-adb8-73460ecda5cb.png)
 
 ### *Acceleration graphs*
-todo
+![image](https://user-images.githubusercontent.com/43893150/148573586-8831ca21-5952-4c32-81f5-d30e90f5a3e9.png)
 
 ## Conclusion
 We can note that NumPy version is the slowest of all everywhere. A probable reason for this is that this is an implementation in Python, and the other two implementations are basically C-based.
+
 The acceleration of the GPU version in comparison to CPU is growing with N growing.
-The GPU version starts to dominate by N = 2^13 ≈ 10^4.
+
+The GPU version starts to dominate over other implementations by N = 2^13 ≈ 10^4.
+
 GPU time starts to rise by N = 2^20 ≈ 10^6.
