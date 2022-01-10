@@ -5,4 +5,4 @@ Labs:
 
 0. MatMul: matrix multiplication.
 1. VertorSum: vector reduction by summing.
-2. *work in progress*
+2. GeneticAlgo: an implementation of the genetic algorithm.
