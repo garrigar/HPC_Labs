@@ -1,3 +1,5 @@
+# *//readme in progress//*
+
 # Lab #2 - Genetic Algorithm
 ## Rail Gabbasov, 6132-010402D
 
