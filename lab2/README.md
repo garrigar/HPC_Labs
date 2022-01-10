@@ -1,12 +1,16 @@
-# *//readme in progress//*
-
 # Lab #2 - Genetic Algorithm
 ## Rail Gabbasov, 6132-010402D
 
 ## Description
-In this work, ...............TODO................
+In this work, an implementation of the genetic algorithm both on GPU and CPU is done.
 
-CUDA version uses ................TODO......................
+The GPU version uses `numba.cuda` and `torch` libraries.
+
+The main kernel `breed_kernel` uses the library `nubma.cuda`. With the help of this library, the kernel is being compiled into the usual CUDA kernel, which then is being appropriately called in the `fit()` method. The kernel implements the crossing-over and mutation procedures, producing the new generation. Each thread computes a few members of the new generation, with all the threads covering the whole new generation.
+
+The fitness calculation and the parents picking is done using `torch`. The trick is to treat Numba device arrays as Torch tensors (both representations point to the same location in memory, so no copying happens). This enables us to use high-level torch tensor operations (which utilize CUDA under the hood) to do the calculation in a short and beautiful way.
+
+CPU version mimics the interface and the behavior of the GPU version, except no CUDA kernel is being compiled (a regular function call is used, the function is non-parallelized (`breed_cpu`)) and the Torch operations with tensors are substituted with the corresponding Numpy operations with arrays.
 
 ## System and Software Specifications 
 (Google Colab was used)
@@ -15,11 +19,13 @@ CUDA version uses ................TODO......................
 
 ----
 
-* __Python__: 3.7
+* __Python__: 3.7.12
 * __CUDA__: 11.2
+* __Numba__: 0.51.2
+* __Torch__: 1.10.0+cu111
 
 ## Launch
-The classes implementing both CPU and GPU versions of the genetic algorithm as well as the corresponding launch and "post-production" sequences are shown in `GeneticAlgo.ipynb`.
+The classes implementing both GPU and CPU versions of the genetic algorithm as well as the corresponding launch and "post-production" sequences are shown in `GeneticAlgo.ipynb`.
 
 ## Results
 
@@ -54,18 +60,18 @@ The classes implementing both CPU and GPU versions of the genetic algorithm as w
 | 26 |           1000 |                        5 |                2000 |           1000 |   74.5575  |   1.37915  |            54.0605  |       6.06891 |      4.14703  |
 
 
-### *Time graphs*
-???????????TODO???????????????
+### *Time*
+If we were to watch one of the *Points count*, *Genes count*, *Individuals count*, *Epochs count* parameters and lock the three others, we would see that the CPU time is growing with that parameter growing. For the GPU time that is basically the same except for few small cases.
 
-### *Acceleration graphs*
-???????????TODO???????????????
+### *Acceleration*
+We can see that the acceleration is significant.
+
+If we were to watch one of the *Points count*, *Genes count*, *Individuals count*, *Epochs count* parameters and lock the three others, we would see that the acceleration is growing with that parameter growing.
 
 ### *Best GPU result*
-Here is ......TODO.......
+The visualisation of the approximation obtained on the GPU in the #9 experiment is shown in the next figure. That is the experiment where the smallest error value was obtained.
 
 ![image](https://user-images.githubusercontent.com/43893150/148715451-7ba98fb5-94fe-48ac-8ba7-23045d0b1d67.png)
 
-
-
 ## Conclusion
-TODO
+The experiment allowed us to see the practical benefits of using GPU in the implementation of a genetic algorithm. Taking into account the fact that the genetic algorithm is "random" in its basis and can converge for a long time, we can conclude that it is worth implementing it on the GPU in terms of time.
